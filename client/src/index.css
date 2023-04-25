@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kH1 {
+    @apply text-2xl
+    tracking-wider
+    font-bold;
+  }
+  .kH2 {
+    @apply text-lg
+    tracking-wide
+    font-bold;
+  }
+  .btn-solid {
+    @apply py-1 px-3
+    bg-kL 
+    font-bold
+    text-sm
+    rounded-lg border border-kL shadow-md 
+    transition ease-in-out 
+    hover:bg-kD 
+    hover:border-none 
+    hover:scale-[1.2] duration-300;
+    md: text-lg;
+  }
+  .btn-transparent {
+    @apply py-1 px-3 
+    bg-white 
+    font-bold
+    text-sm
+    rounded-lg border border-kL shadow-md
+    transition ease-in-out
+    hover:bg-kD 
+    hover:scale-[1.2] duration-300;
+  }
+}
