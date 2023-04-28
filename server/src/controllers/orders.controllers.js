@@ -64,10 +64,4 @@ const deleteOrder = async (req, res) => {
   }
 };
 
-module.exports = {
-  createOrder,
-  getOrders,
-  getOrder,
-  updateOrder,
-  deleteOrder,
-};
+export { createOrder, getOrders, getOrder, updateOrder, deleteOrder };

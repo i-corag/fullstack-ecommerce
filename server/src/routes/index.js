@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import userRouter from './users.routes';
-import productsRouter from './products.routes';
-import categoriesRouter from './categories.routes';
-import brandsRouter from './brands.routes';
-import ordersRouter from './orders.routes';
+import userRouter from './users.routes.js';
+import productsRouter from './products.routes.js';
+import categoriesRouter from './categories.routes.js';
+import brandsRouter from './brands.routes.js';
+import stocksRouter from './stocks.routes.js';
+import ordersRouter from './orders.routes.js';
 
 function routerAPI(app) {
   const router = Router();
@@ -12,7 +13,8 @@ function routerAPI(app) {
   router.use('/products', productsRouter);
   router.use('/categories', categoriesRouter);
   router.use('/brands', brandsRouter);
+  router.use('/stocks', stocksRouter);
   router.use('/orders', ordersRouter);
 }
 
-module.exports = routerAPI;
+export default routerAPI;

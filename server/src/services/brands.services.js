@@ -55,7 +55,7 @@ const deleteBrand = async (id) => {
   return brand;
 };
 
-module.exports = {
+export default {
   createBrand,
   getBrands,
   getBrand,

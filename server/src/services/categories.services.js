@@ -56,7 +56,7 @@ const deleteCategory = async (id) => {
   return category;
 };
 
-module.exports = {
+export default {
   createCategory,
   getCategories,
   getCategory,

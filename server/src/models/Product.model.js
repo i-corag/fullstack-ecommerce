@@ -1,9 +1,9 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/db.config.js';
+import { db } from '../database/db.config.js';
 import Category from './Category.model.js';
 import Brand from './Brand.model.js';
 
-const Product = sequelize.define('Product', {
+const Product = db.define('Product', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -28,10 +28,14 @@ const Product = sequelize.define('Product', {
 
 //ASSOCIATION CATEGOTY-PRODUCT (ONE TO MANY)
 Category.hasMany(Product);
-Product.belongsTo(Category);
+Product.belongsTo(Category, {
+  allowNull: false,
+});
 
 //ASSOCIATION BRAND-PRODUCT (ONE TO MANY)
 Brand.hasMany(Product);
-Product.belongsTo(Brand);
+Product.belongsTo(Brand, {
+  allowNull: false,
+});
 
-module.exports = Product;
+export default Product;

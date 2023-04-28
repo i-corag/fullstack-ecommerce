@@ -1,22 +1,29 @@
 import { Sequelize } from 'sequelize';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_PORT } = process.env;
+//mport { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_PORT } from 'process.env';
 
-const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
-  host: 'localhost',
-  dialect: 'mysql',
-  port: DB_PORT,
-});
+const db = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
+  {
+    host: 'localhost',
+    dialect: 'mysql',
+    port: process.env.DB_PORT,
+  }
+);
 
 const testDB = async () => {
   try {
-    await sequelize.authenticate();
-    await sequelize.sync();
-    console.log('Base de datos conectada');
+    await db.authenticate();
+    //await db.sync();
+    console.log('Successfully connected to database');
   } catch (err) {
-    console.log('Error de conexión con base de datos');
+    console.log('Unable to connect to database');
     console.log(err);
   }
 };
 
-module.exports = { sequelize, testDB };
+export { db, testDB };

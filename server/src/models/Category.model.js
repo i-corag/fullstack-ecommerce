@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/db.config.js';
+import { db } from '../database/db.config.js';
 import Brand from './Brand.model.js';
 
-const Category = sequelize.define('Category', {
+const Category = db.define('Category', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -24,4 +24,5 @@ Brand.belongsToMany(Category, {
   as: 'categories',
   foreingKey: 'brandId',
 });
-module.exports = Category;
+
+export default Category;

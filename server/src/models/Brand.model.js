@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/db.config.js';
+import { db } from '../database/db.config.js';
 
-const Brand = sequelize.define('Brand', {
+const Brand = db.define('Brand', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -12,4 +12,4 @@ const Brand = sequelize.define('Brand', {
   },
 });
 
-module.exports = Brand;
+export default Brand;

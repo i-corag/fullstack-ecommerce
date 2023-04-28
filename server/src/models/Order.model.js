@@ -1,9 +1,9 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/db.config.js';
+import { db } from '../database/db.config.js';
 import User from './User.model.js';
 import Product from './Product.model.js';
 
-const Order = sequelize.define('Order', {
+const Order = db.define('Order', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -30,4 +30,4 @@ Order.belongsToMany(Product, {
   foreingKey: 'orderId',
 });
 
-module.exports = Order;
+export default Order;

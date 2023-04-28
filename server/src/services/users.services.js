@@ -57,7 +57,7 @@ const deleteUser = async (id) => {
   return user;
 };
 
-module.exports = {
+export default {
   createUser,
   getUsers,
   getUser,

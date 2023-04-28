@@ -84,7 +84,7 @@ const deleteProduct = async (id) => {
   return product;
 };
 
-module.exports = {
+export default {
   createProduct,
   getProducts,
   getProduct,

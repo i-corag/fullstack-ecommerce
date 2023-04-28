@@ -53,7 +53,7 @@ const deleteOrder = async (id) => {
   return order;
 };
 
-module.exports = {
+export default {
   createOrder,
   getOrders,
   getOrder,

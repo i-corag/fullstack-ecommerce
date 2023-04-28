@@ -5,7 +5,7 @@ import {
   getUser,
   updateUser,
   deleteUser,
-} from '../controllers/users.controllers';
+} from '../controllers/users.controllers.js';
 
 const router = Router();
 //CREATE USER
@@ -23,4 +23,4 @@ router.put('/update/:id', updateUser);
 //DELETE USER
 router.delete('/delete/:id', deleteUser);
 
-module.exports = router;
+export default router;

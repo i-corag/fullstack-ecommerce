@@ -66,7 +66,7 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   createCategory,
   getCategories,
   getCategory,

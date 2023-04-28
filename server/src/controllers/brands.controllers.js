@@ -66,10 +66,4 @@ const deleteBrand = async (req, res) => {
   }
 };
 
-module.exports = {
-  createBrand,
-  getBrands,
-  getBrand,
-  updateBrand,
-  deleteBrand,
-};
+export { createBrand, getBrands, getBrand, updateBrand, deleteBrand };

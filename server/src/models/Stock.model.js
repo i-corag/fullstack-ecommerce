@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/db.config.js';
+import { db } from '../database/db.config.js';
 import Product from './Product.model.js';
 
-const Stock = sequelize.define('Stock', {
+const Stock = db.define('Stock', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -14,6 +14,8 @@ const Stock = sequelize.define('Stock', {
 
 //ASSOCIATION PRODUCT-STOCK (ONE TO ONE)
 Product.hasOne(Stock);
-Stock.belongsTo(Product);
+Stock.belongsTo(Product, {
+  allowNull: false,
+});
 
-module.exports = Stock;
+export default Stock;

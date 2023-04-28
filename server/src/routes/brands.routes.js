@@ -24,4 +24,4 @@ router.put('/update/:id', updateBrand);
 //DELETE BRAND
 router.delete('/delete/:id', deleteBrand);
 
-module.exports = router;
+export default router;
