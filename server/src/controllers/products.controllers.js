@@ -1,5 +1,28 @@
 import productService from '../services/products.services.js';
 
+const applyFilters = (products, { query, sort }) => {
+  const filteredProducts = [];
+  console.log('SORT', sort);
+  for (const product of products) {
+    if (query && !product.name.toLowerCase().includes(query.toLowerCase())) {
+      continue;
+    }
+    filteredProducts.push(product);
+  }
+  return filteredProducts.sort((a, b) => {
+    const { name: nameA, price: priceA } = a;
+    const { name: nameB, price: priceB } = b;
+    switch (sort) {
+      case 'lowestPriceFirst':
+        return priceA - priceB;
+      case 'highestPriceFirst':
+        return priceB - priceA;
+      default:
+        return nameA.localeCompare(nameB);
+    }
+  });
+};
+
 // CREATE PRODUCT
 const createProduct = async (req, res) => {
   const body = req.body;
@@ -17,8 +40,7 @@ const createProduct = async (req, res) => {
 const getProducts = async (req, res) => {
   try {
     const products = await productService.getProducts();
-    console.log('PRODUCTOS', products);
-    return res.status(201).send(products);
+    return res.status(201).send(applyFilters(products, req.query));
   } catch (err) {
     return res.status(500).send(`Server error: ${err.message}`);
   }

@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
 
 
 const ProductSearch = () => {
 
-    const [focused, setFocused] = useState(false)
     const [search, setSearch] = useSearchParams();
 
     const onSearchChange = (e) => {
@@ -23,13 +21,11 @@ const ProductSearch = () => {
     return (
         <div className='h-9 flex items-center relative border border-kD rounded'>
             <input
-                className='w-4/5 text-kD placeholder-kD px-2 focus:ring-0 focus:ring-offset-0 focus:ring-inset-0'
-                onBlur={() => setFocused(false)}
-                onFocus={() => setFocused((focus) => !focus)}
+                className='w-4/5 text-kD placeholder-kD px-2 ring-0 focus:ring-0'
                 onChange={onSearchChange}
+                defaultValue={search.get('query') ?? ''}
                 id='search'
                 name='search'
-                type='search'
                 placeholder="Search" />
             <MdSearch className='absolute right-2.5 text-kD' />
         </div>

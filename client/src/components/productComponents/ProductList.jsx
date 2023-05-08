@@ -31,11 +31,13 @@ const ProductList = () => {
                     {category.map((product) => {
                         return <ProductCard key={product.id} product={product} />
                     })}
+                    {(category.length === 0) && <p className="text-sm font-light md:text-base">There are no coincidences ...</p>}
                 </ul> :
                 <ul className='w-4/5 mx-auto my-8 flex flex-wrap justify-start items-center gap-6 md:my-10'>
                     {products.map(product => {
                         return <ProductCard key={product.id} product={product} />
                     })}
+                    {(products.length === 0) && <p className="text-sm font-light md:text-base">There are no coincidences ...</p>}
                 </ul>
             }
         </section>

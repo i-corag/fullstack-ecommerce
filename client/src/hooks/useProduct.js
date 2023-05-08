@@ -13,6 +13,7 @@ import {
 
 const useProducts = () => {
   const [search] = useSearchParams();
+  //const [search] = useSearchParams({ sort: 'name' });
   return useQuery(['products', search.toString()], () =>
     URI.get('products', { params: search }).then((res) => res.data)
   );
