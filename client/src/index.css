@@ -14,7 +14,7 @@
     font-bold;
   }
   .btn-solid {
-    @apply py-1 px-3
+    @apply py-2 px-3
     bg-kL 
     font-bold
     text-sm
@@ -26,7 +26,7 @@
     md: text-lg;
   }
   .btn-transparent {
-    @apply py-1 px-3 
+    @apply py-2 px-3 
     bg-white 
     font-bold
     text-sm
@@ -34,5 +34,32 @@
     transition ease-in-out
     hover:bg-kD 
     hover:scale-[1.2] duration-300;
+  }
+  .mobil-dropdown-ul {
+    @apply absolute top-[139px] left-0
+    w-screen h-screen py-2 px-4
+    bg-kL bg-opacity-90;
+  }
+  .dropdown-ul {
+    @apply absolute left-3/4 top-[99px]
+    w-1/4 h-screen py-2 px-4
+   
+    bg-kL bg-opacity-90;
+  }
+  .mobil-dropdown-li {
+    @apply py-2 my-2
+    bg-white 
+    rounded border border-kD
+    text-center 
+    hover:bg-kD
+    hover:text-white;
+  }
+  .input {
+    @apply w-full
+    rounded-md border-0 p-1.5 
+    text-gray-900 
+    placeholder-gray-500 shadow-sm 
+    ring-1 ring-inset ring-gray-300 
+    focus:ring-0 focus:ring-inset;
   }
 }

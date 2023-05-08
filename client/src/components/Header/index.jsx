@@ -1,22 +1,28 @@
 import { NavLink } from 'react-router-dom';
-import Logo from '../../../public/logo.svg';
-import Auth from '../Auth';
-import CartWidget from '../CartWidget';
-import Menu from '../Menu';
+import Logo from '../../public/logo.svg';
+import CartWidget from '../Widget/CartWidget';
+import AuthWidget from '../Widget/AuthWidget';
+import CategoryWidget from '../Widget/CategoryWidget';
+import WishlistWidget from '../Widget/WishlistWidget';
+import CategoryMenu from '../CategoryMenu';
 
 const Header = () => {
 
     return (
-        <header className='sticky top-0 w-screen py-3 px-2 flex items-end justify-between border-b border-kL md:px-8 py-6'>
-            <div className='w-3/6 flex items-center mr-4 md:w-1/4'>
+        <header className='w-screen h-[140px] flex flex-col sticky top-0 z-10 py-2 px-2  items-end justify-between border-b border-kL bg-white shadow-sm md:h-[100px] md:flex-row md:px-10 md:py-6'>
+            <div className='w-full flex items-center justify-center md:1/4 md:justify-start'>
                 <NavLink to='/'>
-                    <img className='w-full object-contain md:w-52' src={Logo} alt='logo' />
+                    <img className='w-2/3 object-contain mx-auto md:w-52' src={Logo} alt='logo' />
                 </NavLink>
             </div>
-            <Menu className='w-1/6 md:w-1/2' />
-            <div className='w-2/6 flex gap-0 md:w-1/4 justify-end gap-2'>
-                <Auth className='md:1/8' />
-                <CartWidget className='md:1/8' />
+            <ul className='hidden md:flex md:flex-row  md:items-center md:justify-center md:gap-8 md:w-1/2 '>
+                <CategoryMenu />
+            </ul>
+            <div className='w-full flex items-center justify-center gap-4 mt-4 md:1/4  md:justify-end md:gap-2'>
+                <WishlistWidget />
+                <CategoryWidget />
+                <AuthWidget />
+                <CartWidget />
             </div>
         </header>
     );
