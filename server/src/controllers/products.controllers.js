@@ -5,9 +5,11 @@ const createProduct = async (req, res) => {
   const body = req.body;
   try {
     const createdProduct = await productService.createProduct(body);
-    return res.status(201).send(createdProduct);
+    return res
+      .status(201)
+      .send({ message: 'Product Successfuly Created', createdProduct });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -15,6 +17,7 @@ const createProduct = async (req, res) => {
 const getProducts = async (req, res) => {
   try {
     const products = await productService.getProducts();
+    console.log('PRODUCTOS', products);
     return res.status(201).send(products);
   } catch (err) {
     return res.status(500).send(`Server error: ${err.message}`);

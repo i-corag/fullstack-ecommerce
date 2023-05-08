@@ -5,9 +5,11 @@ const createBrand = async (req, res) => {
   const brand = req.body;
   try {
     const createdBrand = await brandService.createBrand(brand);
-    return res.status(201).send(createdBrand);
+    return res
+      .status(201)
+      .send({ message: 'Brand Successfuly Created', createdBrand });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

@@ -5,6 +5,7 @@ import categoriesRouter from './categories.routes.js';
 import brandsRouter from './brands.routes.js';
 import stocksRouter from './stocks.routes.js';
 import ordersRouter from './orders.routes.js';
+import authRouter from './auth.routes.js';
 
 function routerAPI(app) {
   const router = Router();
@@ -15,6 +16,7 @@ function routerAPI(app) {
   router.use('/brands', brandsRouter);
   router.use('/stocks', stocksRouter);
   router.use('/orders', ordersRouter);
+  router.use('/auth', authRouter);
 }
 
 export default routerAPI;

@@ -5,9 +5,11 @@ const createOrder = async (req, res) => {
   const order = req.body;
   try {
     const createdOrder = await orderService.createOrder(order);
-    return res.status(201).send(createdOrder);
+    return res
+      .status(201)
+      .send({ message: 'Order Successfuly Created', createdOrder });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -17,7 +19,7 @@ const getOrders = async (req, res) => {
     const orders = await orderService.getOrders();
     return res.status(201).json(orders);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -31,7 +33,7 @@ const getOrder = async (req, res) => {
     }
     return res.status(201).send(order);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -46,7 +48,7 @@ const updateOrder = async (req, res) => {
     }
     return res.status(201).send(`Order successfully updated`);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -60,7 +62,7 @@ const deleteOrder = async (req, res) => {
     }
     return res.status(201).send(`The order: "${id}" was successfully deleted`);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

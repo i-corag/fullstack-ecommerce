@@ -24,7 +24,7 @@ const User = db.define('User', {
     allowNull: false,
   },
   phone: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   role: {

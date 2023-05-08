@@ -5,9 +5,11 @@ const createStock = async (req, res) => {
   const stock = req.body;
   try {
     const createdStock = await stockService.createStock(stock);
-    return res.status(201).send(createdStock);
+    return res
+      .status(201)
+      .send({ message: 'Stock Successfuly Created', createdStock });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

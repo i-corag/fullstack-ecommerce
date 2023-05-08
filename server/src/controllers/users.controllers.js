@@ -4,10 +4,20 @@ import userService from '../services/users.services.js';
 const createUser = async (req, res) => {
   const user = req.body;
   try {
-    const createdUser = await userService.createUser(user);
-    return res.status(201).send(createdUser);
+    //create the user in database
+    const createdUSer = await userService.createUser(user);
+    //create an user in the session
+    // req.session.user = {
+    // id: response.newUser.id,
+    // email: response.newUser.email,
+    // name: response.newUser.name,
+    // };
+    // const session = req.session;
+    return res
+      .status(201)
+      .send({ message: 'User Successfuly Created', createdUSer });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -21,13 +31,27 @@ const getUsers = async (req, res) => {
   }
 };
 
-//READ ONE USER
+//READ USER BY EMAIL
 const getUser = async (req, res) => {
-  const { id } = req.params;
+  const { email } = req.body;
   try {
-    const user = await userService.getUser(id);
+    const user = await userService.getUser(email);
     if (!user) {
-      return res.status(409).send(`The user ID: "${id}" does not exist`);
+      return res.status(409).send(`The user "${email}" does not exist`);
+    }
+    return res.status(201).send(user);
+  } catch (err) {
+    return res.status(500).send(`Server error: ${err.message}`);
+  }
+};
+
+//READ USER BY ID
+const getUserById = async (req, res) => {
+  const id = req.params;
+  try {
+    const user = await userService.getUserById(id);
+    if (!user) {
+      return res.status(409).send({ message: `Server error: ${err.message}` });
     }
     return res.status(201).send(user);
   } catch (err) {
@@ -64,4 +88,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export { createUser, getUsers, getUser, updateUser, deleteUser };
+export { createUser, getUsers, getUser, getUserById, updateUser, deleteUser };

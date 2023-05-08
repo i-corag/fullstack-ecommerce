@@ -6,8 +6,10 @@ const createBrand = async (brand) => {
     where: { name: brand.name },
   });
   if (newBrand.length > 0) {
-    const error = `The brand "${brand.name}" already exists`;
-    return error;
+    return {
+      success: false,
+      message: `The brand "${brand.name}" already exists`,
+    };
   } else {
     const id = crypto.randomBytes(10).toString('hex');
     newBrand = {
@@ -15,7 +17,11 @@ const createBrand = async (brand) => {
       ...brand,
     };
     await Brand.create(newBrand);
-    return newBrand;
+    return {
+      newBrand,
+      success: true,
+      message: `The brand "${brand.name}" successfully add`,
+    };
   }
 };
 

@@ -7,8 +7,10 @@ const createUser = async (user) => {
     where: { email: user.email },
   });
   if (newUser.length > 0) {
-    const error = `The email "${user.email}" is already registered`;
-    return error;
+    return {
+      success: false,
+      message: `The email "${user.email}" is already registered`,
+    };
   } else {
     const id = crypto.randomBytes(10).toString('hex');
     const salt = bcrypt.genSaltSync(10);
@@ -18,7 +20,11 @@ const createUser = async (user) => {
       ...user,
     };
     await User.create(newUser);
-    return newUser;
+    return {
+      newUser,
+      success: true,
+      message: `The email "${user.email}" successfully registered`,
+    };
   }
 };
 
@@ -27,14 +33,22 @@ const getUsers = async () => {
   return allUsers;
 };
 
-const getUser = async (id) => {
-  const user = await User.findByPk(id);
-  return user;
+//get user by email
+const getUser = async (user) => {
+  const thisUser = await User.findAll({
+    where: { email: user.email },
+  });
+  return thisUser;
+};
+
+//get user by email
+const getUserById = async (id) => {
+  const thisUser = await User.findByPk(id);
+  return thisUser;
 };
 
 const updateUser = async (id, body) => {
-  let updatedUser = await getUser(id);
-  console.log(updatedUser);
+  let updatedUser = await getUserById(id);
   if (updatedUser) {
     if (body.password) {
       const salt = bcrypt.genSaltSync(10);
@@ -48,7 +62,7 @@ const updateUser = async (id, body) => {
 };
 
 const deleteUser = async (id) => {
-  let user = await getUser(id);
+  let user = await getUserById(id);
   if (user) {
     await user.destroy({
       where: { id },
@@ -61,6 +75,7 @@ export default {
   createUser,
   getUsers,
   getUser,
+  getUserById,
   updateUser,
   deleteUser,
 };

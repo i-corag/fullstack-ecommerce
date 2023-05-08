@@ -8,10 +8,6 @@ const Order = db.define('Order', {
     type: DataTypes.STRING,
     primaryKey: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
 });
 
 //ASSOCIATION USER-ORDER (ONE TO MANY)

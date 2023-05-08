@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import Order from '../models/Order.model.js';
 import User from '../models/User.model.js';
+import Product from '../models/Product.model.js';
 
 const createOrder = async (order) => {
   if (order.id) {
@@ -13,11 +14,8 @@ const createOrder = async (order) => {
     }
   }
   const id = crypto.randomBytes(10).toString('hex');
-  let newOrder = {
-    id,
-    ...order,
-  };
-  await Order.create(newOrder);
+  let newOrder = await Order.create({ id, ...order });
+  await newOrder.setProducts(order?.products);
   return newOrder;
 };
 

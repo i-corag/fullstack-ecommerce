@@ -5,9 +5,11 @@ const createCategory = async (req, res) => {
   const category = req.body;
   try {
     const createdCategory = await categoryService.createCategory(category);
-    return res.status(201).send(createdCategory);
+    return res
+      .status(201)
+      .send({ message: 'Category Successfuly Created', createdCategory });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
