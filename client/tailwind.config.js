@@ -8,7 +8,7 @@ export default {
       },
       colors: {
         kL: '#968452',
-        kD: '#7ag427',
+        kD: '#7A6427',
       },
     },
   },
