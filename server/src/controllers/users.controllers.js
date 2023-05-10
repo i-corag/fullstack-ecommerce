@@ -4,18 +4,8 @@ import userService from '../services/users.services.js';
 const createUser = async (req, res) => {
   const user = req.body;
   try {
-    //create the user in database
     const createdUSer = await userService.createUser(user);
-    //create an user in the session
-    // req.session.user = {
-    // id: response.newUser.id,
-    // email: response.newUser.email,
-    // name: response.newUser.name,
-    // };
-    // const session = req.session;
-    return res
-      .status(201)
-      .send({ message: 'User Successfuly Created', createdUSer });
+    return res.send(createdUSer);
   } catch (err) {
     return res.status(500).send({ message: `Server error: ${err.message}` });
   }

@@ -14,7 +14,7 @@ const getUser = async ({ queryKey }) => {
 };
 
 const createUser = async (user) => {
-  return URI.post('users/create', user);
+  return await URI.post('users/create', user);
 };
 
 const deleteUser = async (id) => {

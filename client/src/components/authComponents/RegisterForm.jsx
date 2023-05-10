@@ -22,7 +22,7 @@ const RegisterForm = ({ defaultValues, onFormSubmit, isLoading, isUpdating, isEr
 
     { isError && <ErrorMsg error={error.message} /> }
     return (
-        <form className='w-4/5 h-[300px] my-4 mx-auto bg-white rounded md:w-3/6 md:my-8' onSubmit={onSubmit}>
+        <form className='w-4/5 h-[300px] my-4 mx-auto bg-white rounded md:w-3/6' onSubmit={onSubmit}>
             <div className='my-4'>
                 <label className='font-light text-sm p-2'>Name</label>
                 <input className='input' id='name' type='text' defaultValue={defaultValues?.name} {...register('name')} />

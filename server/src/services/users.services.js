@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
-import Order from '../models/Order.model.js';
 import User from '../models/User.model.js';
 
 const createUser = async (user) => {

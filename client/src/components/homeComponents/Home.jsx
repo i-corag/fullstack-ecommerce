@@ -8,6 +8,7 @@ const Home = () => {
 
     { isLoading && <isLoading /> }
     { isError && <ErrorMsg error={error.message} /> }
+
     return (
         <section className='flex flex-col justify-center items-center px-2'>
             {(loggedUser.loggedIn) ?

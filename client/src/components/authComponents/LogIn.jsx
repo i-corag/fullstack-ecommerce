@@ -4,9 +4,12 @@ import * as yup from "yup";
 import Loading from '../../components/sharedComponents/Loading';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { logIn } from '../../api/auth';
+import { useState } from 'react';
+import ErrorMsg from '../sharedComponents/ErrorMsg';
 
 const LogIn = () => {
 
+    const [isError, setIsError] = useState(null)
     const navigate = useNavigate();
 
     const schema = yup.object({
@@ -18,8 +21,12 @@ const LogIn = () => {
     const { errors } = formState
 
     const onFormSubmit = async (data) => {
-        await logIn({ ...data })
-        navigate('/home');
+        try {
+            await logIn({ ...data })
+            navigate('/home');
+        } catch (err) {
+            setIsError(err.response.data.message)
+        }
     }
 
     const onSubmit = handleSubmit((data) => onFormSubmit(data));
@@ -44,6 +51,7 @@ const LogIn = () => {
                     </button>
                 </div>
             </form>
+            {!!isError && <ErrorMsg error={isError} />}
             <p className='font-light text-center mt-4'>
                 Don't have an account?{' '}
                 <NavLink className='kH2 text-kL' to='/register'>

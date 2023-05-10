@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { queryClient } from '../api/api.js';
 import { isLoggedIn } from '../api/auth.js';
 import {
@@ -18,7 +18,6 @@ const useGetLoggedUser = () => useQuery(['loggedUser'], isLoggedIn);
 const useGetUser = (id) => useQuery(['user', id], getUser);
 
 const useCreateUser = () => {
-  //const queryClient = useQueryClient();
   return useMutation(createUser, {
     onSuccess: () => {
       queryClient.invalidateQueries('users');
@@ -27,7 +26,6 @@ const useCreateUser = () => {
 };
 
 const useDeleteUser = () => {
-  //const queryClient = useQueryClient();
   return useMutation(deleteUser, {
     onSuccess: () => {
       queryClient.invalidateQueries('users');
@@ -36,7 +34,6 @@ const useDeleteUser = () => {
 };
 
 const useUpdateUser = () => {
-  //const queryClient = useQueryClient();
   return useMutation(updateUser, {
     onSuccess: () => {
       queryClient.invalidateQueries('users');
