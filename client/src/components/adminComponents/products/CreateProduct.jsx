@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateProduct } from '../../../hooks/useProduct';
-import Loading from '../../Loading';
-import ErrorMsg from '../../ErrorMsg';
-import GoBack from '../../GoBack';
+import ErrorMsg from '../../../components/sharedComponents/ErrorMsg';
+import GoBack from '../../../components/sharedComponents/GoBack';
+import Loading from '../../../components/sharedComponents/Loading';
 import CreateProductForm from './CreateProductForm';
 
 const CreateProduct = () => {

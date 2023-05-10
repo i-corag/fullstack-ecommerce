@@ -18,6 +18,7 @@ const userLogIn = async (req, res) => {
       } else {
         //crea un usuario dentro de la sesion
         req.session.user = thisUser[0];
+        req.session.save();
         return res.status(200).send(thisUser);
       }
     }

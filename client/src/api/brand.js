@@ -1,12 +1,6 @@
-//import axios from 'axios';
-
 import { URI } from './api';
 
 //FETCHING API
-
-//const URI = axios.create({
-//baseURL: 'http://localhost:5955/api/brands',
-//});
 
 const getBrands = async () => {
   const res = await URI.get('brands');

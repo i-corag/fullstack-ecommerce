@@ -2,7 +2,7 @@ import productService from '../services/products.services.js';
 
 const applyFilters = (products, { query, sort }) => {
   const filteredProducts = [];
-  console.log('SORT', sort);
+
   for (const product of products) {
     if (query && !product.name.toLowerCase().includes(query.toLowerCase())) {
       continue;

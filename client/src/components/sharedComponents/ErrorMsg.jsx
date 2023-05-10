@@ -1,4 +1,3 @@
-
 const ErrorMsg = ({ error }) => {
     return (
         <div className="w-fit my-14 mx-auto">

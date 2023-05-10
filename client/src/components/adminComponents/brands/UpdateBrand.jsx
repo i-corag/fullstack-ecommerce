@@ -1,9 +1,9 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetBrand, useUpdateBrand } from '../../../hooks/useBrand';
-import ErrorMsg from '../../ErrorMsg/index.jsx';
-import GoBack from '../../GoBack';
-import Loading from '../../Loading/index.jsx';
-import BrandForm from '../shared/BrandForm.jsx';
+import ErrorMsg from '../../../components/sharedComponents/ErrorMsg';
+import GoBack from '../../../components/sharedComponents/GoBack';
+import Loading from '../../../components/sharedComponents/Loading';
+import Form from '../shared/Form.jsx';
 
 const UpdateBrand = () => {
 
@@ -26,7 +26,7 @@ const UpdateBrand = () => {
             <Link to='/admin/brands'><GoBack /></Link>
             <div className='w-4/5 h-[300px] my-6 mx-auto p-4 bg-white rounded md:w-3/6 md:my-10'>
                 <h1 className='kH2 text-kL text-center my-6 md:kH1'>Update Brand</h1>
-                <BrandForm defaultValues={brand.name} onFormSubmit={onFormSubmit} isLoading={isMutating} />
+                <Form defaultValues={brand.name} onFormSubmit={onFormSubmit} isLoading={isMutating} />
             </div>
         </>
     )

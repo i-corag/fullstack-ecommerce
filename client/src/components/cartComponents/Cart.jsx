@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineDelete } from 'react-icons/ai';
+import { createOrder } from "../../api/order";
 import { useGetLoggedUser } from "../../hooks/useUser";
 import { useCartStore } from "../../stores/CartStore";
-import { AiOutlineDelete } from 'react-icons/ai';
-import ErrorMsg from "../ErrorMsg";
 import ConfirmOrderModal from "./ConfirmOrderModal";
-import { createOrder } from "../../api/order";
+import ErrorMsg from "../../components/sharedComponents/ErrorMsg";
+import GoBack from "../sharedComponents/GoBack";
 
 const Cart = () => {
 
@@ -53,81 +54,87 @@ const Cart = () => {
     { isError && <ErrorMsg error={error.message} /> }
 
     return (
-        <div>
+        <section className="w-11/12 mx-auto my-6 md:w-8/12">
+            <Link to='/home'><GoBack /></Link>
             {cartProducts.length === 0 ? (
                 <div className='flex flex-col items-center mt-10'>
                     <p className="text-sm font-light md:text-base">There are no products in the cart</p>
-                    <Link to='/home'>
+                    <Link to='/products'>
                         <button className='btn-solid mt-4'>Back to shopping</button>
                     </Link>
                 </div>
             ) : (
                 <>
                     {id ? (
-                        <div className='flex flex-colum items-center'>
-                            <p classNAme='text-md font-bold color-kD'>Thank you for your order!</p>
-                            <p className='mt-1 text-md' my='1em'>
-                                Remember to verify your information and order details before paying
+                        <div className='w-4/5 flex flex-col items-center mx-auto my-14'>
+                            <p className='text-lg font-bold text-kD md:text-2xl'>Thank you for your order!</p>
+                            <p className='text-sm text-center py-2 md:text-base md:py-4'>
+                                Remember to verify your information before paying
                             </p>
-                            <div className='py-2 px-3 border border-kD rounded m-1'>
-                                <p className='text-md'>
-                                    Order ID: <span>{id}</span>
+                            <div className='w-full p-3 border border-kD rounded my-2 md:w-3/5'>
+                                <p className='text-md font-bold'>
+                                    Order ID: <span className='pl-1 font-light'>{id}</span>
                                 </p>
-                                <p className='text-md'>
-                                    Name: <span>{loggedUser.user.name}</span>
+                                <p className='text-md font-bold'>
+                                    Name: <span className='pl-1 font-light'>{loggedUser.user.name}</span>
                                 </p>
-                                <p className='text-md'>
-                                    Email: <span>{loggedUser.user.email}</span>
+                                <p className='text-md font-bold'>
+                                    Email: <span className='pl-1 font-light'>{loggedUser.user.email}</span>
                                 </p>
-                                <p className='text-md'>
-                                    Address: <span>{loggedUser.user.address}</span>
+                                <p className='text-md font-bold'>
+                                    Address: <span className='pl-1 font-light'>{loggedUser.user.address}</span>
                                 </p>
-                                <p className='text-md'>
-                                    Phone: <span>{loggedUser.user.phone}</span>
+                                <p className='text-md font-bold'>
+                                    Phone: <span className='pl-1 font-light'>{loggedUser.user.phone}</span>
                                 </p>
                             </div>
                             <Link to='/'>
                                 <button
-                                    className='btn-transparent m-3'
+                                    className='btn-solid m-3'
                                     onClick={clearCart}>
                                     Confirmar Pedido
                                 </button>
                             </Link>
                         </div>
                     ) : (
-                        <div>
+                        <div className='w-full mt-6 md:mt-14'>
                             <div className='flex justify-end'>
                                 <button className='btn-solid mb-3' onClick={() => clearCart()}>Clear all</button>
                             </div>
-                            <ul> {cartProducts.map((product) => {
-                                return (
-                                    <li key={product.id}>
-                                        <div className='h-full object-contain'>
-                                            <img src={product.image} alt='productImg' />
-                                        </div>
-                                        <p className="w-[250px] text-center text-xs">{product.name}</p>
-                                        <p className="w-[80px] text-center text-xs">US${product.price}</p>
-                                        <div className='w-[150px] flex items-center justofy-center gap-1'>
-                                            <button className='btn-transparent' onClick={() => removeFromCart(product, 1)}>
-                                                -
-                                            </button>
-                                            <p className='text-sm text-kD'>{product.quantity}</p>
-                                            <button className='btn-transparent' onClick={() => addToCart(product, 1)}>
-                                                +
-                                            </button>
-                                        </div>
-                                        <p className="w-[80px] text-center text-xs">
-                                            Subtotal: US${(product.quantity * product.price).toFixed(2)}
-                                        </p>
-                                        <button className='btn-transparent' onClick={() => deleteProduct(product.id)}>
-                                            <AiOutlineDelete />
-                                        </button>
-                                    </li>
-                                );
-                            })}
+                            <ul className="flex flex-col items-center">
+                                {cartProducts.map((product) => {
+                                    return (
+                                        <li key={product.id} className='w-full flex items-center justify-between border-b md:justify-center'>
+                                            <div className='w-3/12 my-2 flex items-center justify-center md:h-[100px]'>
+                                                <img className='h-full object-contain' src={product.image} alt='productImg' />
+                                            </div>
+                                            <div className="w-9/12 ml-2 my-2 py-2 md:flex md:items-center md:justify-between">
+                                                <p className="text-start text-sm font-bold py-1 md:w-4/12">{product.name}</p>
+                                                <p className=" text-start text-sm text-kD font-light md:w-2/12 md:text-center md:font-bold">US${product.price}</p>
+                                                <div className='flex justify-between items-center mt-4 md:w-6/12 md:justify-center md:gap-4 md:mt-0'>
+                                                    <div className='flex items-center justofy-center gap-1'>
+                                                        <button className='btn-transparent py-1' onClick={() => removeFromCart(product, 1)}>
+                                                            -
+                                                        </button>
+                                                        <p className='text-md text-kD mx-1'>{product.quantity}</p>
+                                                        <button className='btn-transparent py-1' onClick={() => addToCart(product, 1)}>
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                    <p className="text-center text-xs md:text-sm">
+                                                        Subtotal: US${(product.quantity * product.price).toFixed(2)}
+                                                    </p>
+                                                    <button className='btn-transparent' onClick={() => deleteProduct(product.id)}>
+                                                        <AiOutlineDelete />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                             {pay && (
-                                <div className='flex justify-end items-center gap-2'>
+                                <div className='flex justify-end items-center gap-6 mt-4'>
                                     <p className='text-md text-kD mt-1'>
                                         Total US${totalCartPrice().toFixed(2)}
                                     </p>
@@ -144,7 +151,7 @@ const Cart = () => {
                     )}
                 </>
             )}
-        </div>
+        </section>
     );
 };
 

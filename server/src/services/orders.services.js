@@ -21,7 +21,10 @@ const createOrder = async (order) => {
 
 const getOrders = async () => {
   const allOrders = await Order.findAll({
-    include: [{ model: User, as: 'User' }],
+    include: [
+      { model: User, as: 'User' },
+      { model: Product, as: 'products' },
+    ],
   });
   return allOrders;
 };

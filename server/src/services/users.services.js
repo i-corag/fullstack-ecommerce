@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
+import Order from '../models/Order.model.js';
 import User from '../models/User.model.js';
 
 const createUser = async (user) => {
@@ -41,7 +42,7 @@ const getUser = async (user) => {
   return thisUser;
 };
 
-//get user by email
+//get user by id
 const getUserById = async (id) => {
   const thisUser = await User.findByPk(id);
   return thisUser;

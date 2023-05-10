@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
 import { AiOutlineFileAdd, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 import { useGetCategories, useDeleteCategory } from '../../../hooks/useCategory';
-import Loading from '../../Loading';
-import ErrorMsg from '../../ErrorMsg';
-import GoBack from '../../GoBack';
+import ErrorMsg from '../../../components/sharedComponents/ErrorMsg';
+import Loading from '../../../components/sharedComponents/Loading';
 
 const AdminCategoryList = () => {
 
@@ -16,29 +15,28 @@ const AdminCategoryList = () => {
 
     return (
         <section className='px-2'>
-            <Link to='/admin'><GoBack /></Link>
             <h1 className='kH2 text-kD text-center mt-16 '>LIST OF CATEGORIES</h1>
             <div className='my-8 flex flex-col md:w-3/5 md:mx-auto'>
-                <table className='table-auto'>
-                    <thead>
-                        <tr>
-                            <th className='text-sm text-center text-kL border p-1'>ID</th>
-                            <th className='text-sm text-center text-kL border p-1'>CATEGORY NAME</th>
-                            <th className='text-sm text-center text-kL border p-1'>EDIT</th>
-                            <th className='text-sm text-center text-kL border p-1'>DELETE</th>
+                <table className="w-full border border-kL">
+                    <thead className="flex w-full border-b border-b-kL">
+                        <tr className='flex w-full'>
+                            <th className='flex items-center justify-center text-sm text-center text-kL border p-1 w-5/12'>ID</th>
+                            <th className='flex items-center justify-center text-sm text-center text-kL border p-1 w-3/12'>CATEGORY NAME</th>
+                            <th className='flex items-center justify-center text-sm text-center text-kL border p-1 w-2/12'>EDIT</th>
+                            <th className='flex items-center justify-center text-sm text-center text-kL border p-1 w-2/12'>DELETE</th>
                         </tr>
                     </thead>
-                    <tbody className=''>
+                    <tbody className="flex flex-col items-center justify-between overflow-y-scroll w-full max-h-64">
                         {categories?.map((category) => (
-                            <tr key={category.id}>
-                                <td className='text-xs text-center border p-2'> {category.id} </td>
-                                <td className='text-xs text-center border p-2'> {category.name} </td>
-                                <td className='text-xs text-center border p-2'>
+                            <tr key={category.id} className='flex w-full'>
+                                <td className='flex items-center justify-center text-xs text-center border p-2 w-5/12'> {category.id} </td>
+                                <td className='flex items-center justify-center text-xs text-center border p-2 w-3/12'> {category.name} </td>
+                                <td className='flex items-center justify-center text-xs text-center border p-2 w-2/12'>
                                     <Link className='flex justify-center' to={`update/${category.id}`}>
                                         <AiOutlineEdit />
                                     </Link>
                                 </td>
-                                <td className='text-xs text-center border p-2'>
+                                <td className='flex items-center justify-center text-xs text-center border p-2 w-2/12'>
                                     <Link className='flex justify-center' onClick={() => { mutate(category.id) }}>
                                         {isMutating ? <Loading /> : <AiOutlineDelete />}
                                     </Link>

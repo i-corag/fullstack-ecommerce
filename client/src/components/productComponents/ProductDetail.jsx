@@ -1,8 +1,8 @@
 import { useGetProduct } from '../../hooks/useProduct.js';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import ErrorMsg from '../ErrorMsg/index.jsx';
-import Loading from '../Loading/index.jsx';
-import GoBack from '../GoBack/index.jsx';
+import ErrorMsg from '../../components/sharedComponents/ErrorMsg';
+import Loading from '../../components/sharedComponents/Loading';
+import GoBack from '../../components/sharedComponents/GoBack';
 import { useCartStore } from '../../stores/CartStore.js';
 import { useState } from 'react';
 import AddQty from '../cartComponents/AddQty.jsx';
@@ -36,7 +36,7 @@ const ProductDetail = () => {
                 <div className='md:w-4/5 flex flex-col items-end'>
                     <div >
                         <p className="text-xl text-center py-2 md:kH1 text-end">{product.name}</p>
-                        <p className="text-kL text-center py-2 md:kH2 text-end">{product.Brand.name}</p>
+                        <p className="text-kL text-center py-2 md:kH2 text-end">{product.Brand?.name}</p>
                         <p className='text-center py-2 md:text-end text-lg font-light' >{product.description}</p>
                         <p className="text-center text-kL text-xl font-bolder py-2 md:kH2 text-end">US$ {product.price}</p>
                         <hr className="md:my-6" />
@@ -52,7 +52,7 @@ const ProductDetail = () => {
                         </div> :
                         <div className="h-[60px] flex justify-between items-center mt-4 md:w-1/2 md:justify-center md:gap-4">
                             <AddQty onAdd={onAdd} />
-                            <AddToWishlist id={id} />
+                            <AddToWishlist product={product} />
                         </div>
                     }
                 </div>

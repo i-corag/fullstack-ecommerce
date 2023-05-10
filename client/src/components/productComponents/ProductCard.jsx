@@ -7,13 +7,11 @@ import AddToWishlist from "../wishlistComponents/AddToWishlist";
 const ProductCard = ({ product }) => {
 
     const addToCart = useCartStore(state => state.addToCart)
-    //const clearCart = useCartStore(state => state.clearCart)
     const [add, setAdd] = useState(false);
 
     const onAdd = (quantity) => {
         setAdd(true)
         addToCart(product, quantity)
-        //clearCart()
     }
 
     return (
@@ -24,7 +22,7 @@ const ProductCard = ({ product }) => {
                 </div>
                 <div className="w-full h-[80px] p-4">
                     <p className="text-lg text-end truncate">{product.name}</p>
-                    <p className="text-kL text-end">{product.Brand.name}</p>
+                    <p className="text-kL text-end">{product.Brand?.name}</p>
                 </div>
                 <div className="h-[80px] p-1 font-light text-ellipsis overflow-hidden">
                     <p className="text-justify">{product.description}</p>
@@ -41,7 +39,7 @@ const ProductCard = ({ product }) => {
                 </div> :
                 <div className='flex items-center justify-between mt-8 p-1'>
                     <AddQty onAdd={onAdd} />
-                    <AddToWishlist id={product.id} />
+                    <AddToWishlist product={product} />
                 </div>
             }
         </li >

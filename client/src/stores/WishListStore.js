@@ -1,16 +1,18 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-const WishListStore = create(
+const useWishListStore = create(
   persist(
     (set) => ({
       wishlist: [],
-      addToWishlist: (id) =>
-        set((state) => ({ wishlist: [...state.wishlist, id] })),
-      removeFromWishlist: (id) =>
+      addToWishlist: (product) =>
+        set((state) => ({ wishlist: [...state.wishlist, { ...product }] })),
+
+      removeFromWishlist: (product) =>
         set((state) => ({
-          wishlist: state.wishlist.filter((product) => product !== id),
+          wishlist: state.wishlist.filter((x) => x.id !== product.id),
         })),
+      clearWishlist: () => set({ wishlist: [] }),
     }),
     {
       name: 'wishlist',
@@ -18,4 +20,4 @@ const WishListStore = create(
   )
 );
 
-export { WishListStore };
+export { useWishListStore };

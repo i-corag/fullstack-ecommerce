@@ -1,18 +1,20 @@
-import { WishListStore } from '../../stores/WishListStore.js';
+import { useWishListStore } from '../../stores/WishListStore.js';
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs'
 
-const AddToWishlist = (id) => {
+const AddToWishlist = ({ product }) => {
 
-    const wishlist = WishListStore((state) => state.wishlist)
-    const addToWishlist = WishListStore((state) => state.addToWishlist);
-    const removeFromWishlist = WishListStore((state) => state.removeFromWishlist);
-    const inWishlist = wishlist.includes(id);
+    const wishlist = useWishListStore((state) => state.wishlist)
+    const addToWishlist = useWishListStore((state) => state.addToWishlist);
+    const removeFromWishlist = useWishListStore((state) => state.removeFromWishlist);
+
+    const inWishlist = wishlist.some(x => x.id === product.id);
+
     const toggleWishlist = () => {
         if (inWishlist) {
-            removeFromWishlist(id);
+            removeFromWishlist(product);
             return;
         }
-        addToWishlist(id);
+        addToWishlist(product);
     };
 
     return (
@@ -24,3 +26,4 @@ const AddToWishlist = (id) => {
 }
 
 export default AddToWishlist
+

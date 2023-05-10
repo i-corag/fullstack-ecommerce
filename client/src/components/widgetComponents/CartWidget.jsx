@@ -4,7 +4,6 @@ import { useCartStore } from "../../stores/CartStore";
 
 const CartWidget = () => {
     const cartProducts = useCartStore(state => state.cartProducts)
-    console.log('CART-WIDGET', cartProducts)
     const totalCartQuantity = () => cartProducts.reduce((acc, cur) => acc + cur.quantity, 0);
 
     return (

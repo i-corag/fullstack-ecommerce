@@ -7,24 +7,20 @@ const useCartStore = create(
       cartProducts: [],
 
       addToCart: (product, quantity) => {
-        console.log('PRODUCT', product, quantity);
         set((state) => {
           const existInCart = get().cartProducts.find(
             (x) => x.id === product.id
           );
-          console.log('EXIST', existInCart);
           if (!existInCart) {
             return {
               cartProducts: [...state.cartProducts, { ...product, quantity }],
             };
           }
-
           const updatedCartProducts = get().cartProducts.map((x) =>
             x.id === product.id
               ? { ...product, quantity: product.quantity + quantity }
               : x
           );
-          console.log('UPDATED-1', updatedCartProducts);
           return { cartProducts: updatedCartProducts };
         });
       },

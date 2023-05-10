@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Loading from '../Loading';
-import { logIn } from '../../api/auth';
+import Loading from '../../components/sharedComponents/Loading';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { logIn } from '../../api/auth';
 
 const LogIn = () => {
 
@@ -27,7 +27,7 @@ const LogIn = () => {
     return (
         <section className='w-4/5 my-10 mx-auto md:w-2/5'>
             <h1 className='kH1 text-kL text-center my-6'>Log In</h1>
-            <form className='w-4/5 h-[300px] my-4 mx-auto bg-white rounded md:w-3/6 md:my-8' onSubmit={onSubmit}>
+            <form className='w-4/5 h-[200px] mt-4 mx-auto bg-white rounded md:w-3/6' onSubmit={onSubmit}>
                 <div className='my-4'>
                     <label className='font-light text-sm p-2'>Email</label>
                     <input className='input' type='email'{...register('email')} />
@@ -44,7 +44,7 @@ const LogIn = () => {
                     </button>
                 </div>
             </form>
-            <p className='font-light text-center'>
+            <p className='font-light text-center mt-4'>
                 Don't have an account?{' '}
                 <NavLink className='kH2 text-kL' to='/register'>
                     Register

@@ -14,7 +14,6 @@ const createProduct = async (product) => {
   const category = await Category.findAll({
     where: { id: product.CategoryId },
   });
-  console.log(category);
   if (category.length === 0) {
     const error = `The category "${product.CategoryId}" does not exists`;
     return error;
@@ -22,7 +21,6 @@ const createProduct = async (product) => {
   const brand = await Brand.findAll({
     where: { id: product.BrandId },
   });
-  console.log(brand);
   if (brand.length === 0) {
     const error = `The brand "${product.BrandId}" does not exists`;
     return error;

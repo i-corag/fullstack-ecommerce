@@ -1,9 +1,9 @@
 import { useProducts } from '../../hooks/useProduct.js';
 import { Link, useParams } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import Loading from '../Loading/index.jsx';
-import ErrorMsg from '../ErrorMsg/index.jsx';
-import GoBack from '../GoBack/index.jsx';
+import ErrorMsg from '../../components/sharedComponents/ErrorMsg';
+import Loading from '../../components/sharedComponents/Loading';
+import GoBack from '../../components/sharedComponents/GoBack';
 import ProductSearch from './ProductSearch.jsx';
 import ProductSort from './ProductSort.jsx';
 
@@ -14,7 +14,7 @@ const ProductList = () => {
 
 
     const { categoryId } = useParams();
-    const category = products.filter((product) => product.Category.name == categoryId);
+    const category = products.filter((product) => product.Category?.name == categoryId);
 
 
     return (

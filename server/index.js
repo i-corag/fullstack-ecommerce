@@ -33,8 +33,8 @@ app.use(
   expressSession({
     key: 'userId', //the key is the name of the cookie is going to create
     secret: process.env.SESSION_SECRET,
-    resave: false, //true?
-    saveUninitialized: false, //true?
+    resave: true, //true?
+    saveUninitialized: true, //true?
     cookie: {
       maxAge: 3600 * 24 * 60 * 60 * 7, //one week
     },

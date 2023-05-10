@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { RiMenu5Fill } from 'react-icons/ri'
-import CategoryMenu from '../CategoryMenu';
+import CategoryMenu from '../../components/sharedComponents/CategoryMenu';
 
 const CategoryWidget = () => {
 

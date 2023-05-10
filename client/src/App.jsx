@@ -1,12 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Header from './components/Header'
-import Home from './components/Home'
+import Header from './components/sharedComponents/Header'
+import Home from './components/homeComponents/Home'
 import ProductList from './components/productComponents/ProductList'
 import ProductDetail from './components/productComponents/ProductDetail'
 import Cart from './components/cartComponents/Cart';
-import Register from './components/Register'
-import LogIn from './components/LogIn'
-import Admin from './components/adminComponents/Admin'
+import Register from './components/authComponents/Register'
+import LogIn from './components/authComponents/LogIn'
 import AdminContainer from './components/adminComponents/shared/AdminContainer'
 import UpdateBrand from './components/adminComponents/brands/UpdateBrand'
 import CreateBrand from './components/adminComponents/brands/CreateBrand'
@@ -33,10 +32,12 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/admin" element={<Admin />} />
+
         <Route path="/admin/:adminId" element={<AdminContainer />} />
+
         <Route path="/admin/brands/create" element={<CreateBrand />} />
         <Route path="/admin/brands/update/:id" element={<UpdateBrand />} />
+
         <Route path="/admin/categories/create" element={<CreateCategory />} />
         <Route path="/admin/categories/update/:id" element={<UpdateCategory />} />
 
@@ -44,6 +45,9 @@ function App() {
         <Route path="/admin/products/update/:id" element={<UpdateProduct />} />
 
         <Route path="/admin/users/update/:id" element={<UpdateUser />} />
+
+        <Route path="/admin/orders/update/:id" element={<div text={'Hola'} />} />
+
         <Route path="*" element={<h3>404 Not Found</h3>} />
       </Routes>
     </>

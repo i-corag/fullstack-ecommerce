@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Loading from '../Loading';
+import Loading from '../../components/sharedComponents/Loading';
+import ErrorMsg from '../sharedComponents/ErrorMsg';
 
-const RegisterForm = ({ defaultValues, onFormSubmit, isLoading }) => {
+const RegisterForm = ({ defaultValues, onFormSubmit, isLoading, isUpdating, isError, error }) => {
 
     const schema = yup.object({
         name: yup.string().required("Name is required"),
@@ -12,37 +13,39 @@ const RegisterForm = ({ defaultValues, onFormSubmit, isLoading }) => {
         address: yup.string().required("Address is required"),
         phone: yup.number("Phone has to be a number").required("Phone is required"),
     });
+
     const form = useForm({ defaultValues, resolver: yupResolver(schema) });
     const { register, handleSubmit, formState } = form;
     const { errors } = formState
 
     const onSubmit = handleSubmit((data) => onFormSubmit(data));
 
+    { isError && <ErrorMsg error={error.message} /> }
     return (
         <form className='w-4/5 h-[300px] my-4 mx-auto bg-white rounded md:w-3/6 md:my-8' onSubmit={onSubmit}>
             <div className='my-4'>
                 <label className='font-light text-sm p-2'>Name</label>
-                <input className='input' id='name' type='text' {...register('name')} />
+                <input className='input' id='name' type='text' defaultValue={defaultValues?.name} {...register('name')} />
                 <small className='text-red-500'>{errors.name?.message}</small>
             </div>
             <div className='my-4'>
                 <label className='font-light text-sm p-2'>Email</label>
-                <input className='input' type='email'{...register('email')} />
+                <input className='input' type='email' defaultValue={defaultValues?.email} {...register('email')} />
                 <small className='text-red-500'>{errors.email?.message}</small>
             </div>
             <div className='my-4'>
                 <label className='font-light text-sm p-2'>Password</label>
-                <input className='input' type='password'{...register('password')} />
+                <input className='input' type='password' disabled={isUpdating} {...register('password')} />
                 <small className='text-red-500'>{errors.password?.message}</small>
             </div>
             <div className='my-4'>
                 <label className='font-light text-sm p-2'>Address</label>
-                <input className='input' type='text' {...register('address')} />
+                <input className='input' type='text' defaultValue={defaultValues?.address} {...register('address')} />
                 <small className='text-red-500'>{errors.address?.message}</small>
             </div>
             <div className='my-4'>
                 <label className='font-light text-sm p-2'>Phone</label>
-                <input className='input' type='number' {...register('phone')} />
+                <input className='input' type='number' defaultValue={defaultValues?.phone} {...register('phone')} />
                 <small className='text-red-500'>{errors.phone?.message}</small>
             </div>
             <div className='mt-6 flex justify-center'>
