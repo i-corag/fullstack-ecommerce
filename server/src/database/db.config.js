@@ -2,8 +2,6 @@ import { Sequelize } from 'sequelize';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-//mport { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_PORT } from 'process.env';
-
 const db = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USERNAME,

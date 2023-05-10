@@ -1,4 +1,3 @@
-//require('dotenv').config();
 import * as dotenv from 'dotenv';
 import express from 'express';
 import expressSession from 'express-session';
@@ -42,10 +41,10 @@ app.use(
 );
 
 //ROUTES
-http: routerAPI(app);
+routerAPI(app);
 
 //SERVER LISTEN
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
+app.listen(PORT || 5955, () => {
   console.log('Listening on port: ', PORT);
 });
