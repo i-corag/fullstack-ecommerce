@@ -6,7 +6,7 @@ const createCategory = async (category) => {
     where: { name: category.name },
   });
   if (newCategory.length > 0) {
-    const error = `The category "${category.name}" already exists`;
+    const error = { message: `The category "${category.name}" already exists` };
     return error;
   } else {
     const id = crypto.randomBytes(10).toString('hex');
@@ -36,14 +36,14 @@ const updateCategory = async (id, body) => {
       where: { name: body.name },
     });
     if (categoryName.length > 0) {
-      const error = `The category "${body.name}" already exists`;
+      const error = { message: `The category "${body.name}" already exists` };
       return error;
     }
     updatedCategory = await Category.update(
       { name: body.name },
       { where: { id } }
     );
-    return `Categoty successfully updated`;
+    return { message: `Categoty successfully updated` };
   }
   return updatedCategory;
 };

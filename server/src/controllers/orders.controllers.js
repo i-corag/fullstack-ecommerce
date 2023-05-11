@@ -29,7 +29,9 @@ const getOrder = async (req, res) => {
   try {
     const order = await orderService.getOrder(id);
     if (!order) {
-      return res.status(409).send(`The order ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The order ID: "${id}" does not exist` });
     }
     return res.status(201).send(order);
   } catch (err) {
@@ -44,9 +46,11 @@ const updateOrder = async (req, res) => {
   try {
     const updatedOrder = await orderService.updateOrder(id, body);
     if (!updatedOrder) {
-      return res.status(409).send(`The order ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The order ID: "${id}" does not exist` });
     }
-    return res.status(201).send(`Order successfully updated`);
+    return res.status(201).send({ message: `Order successfully updated` });
   } catch (err) {
     return res.status(500).send({ message: `Server error: ${err.message}` });
   }
@@ -58,9 +62,13 @@ const deleteOrder = async (req, res) => {
   try {
     const deletedOrder = await orderService.deleteOrder(id);
     if (!deletedOrder) {
-      return res.status(409).send(`The order ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The order ID: "${id}" does not exist` });
     }
-    return res.status(201).send(`The order: "${id}" was successfully deleted`);
+    return res
+      .status(201)
+      .send({ message: `The order: "${id}" was successfully deleted` });
   } catch (err) {
     return res.status(500).send({ message: `Server error: ${err.message}` });
   }

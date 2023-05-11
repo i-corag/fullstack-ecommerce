@@ -9,7 +9,7 @@ const createOrder = async (order) => {
       where: { id: order.id },
     });
     if (newOrder.length > 0) {
-      const error = `The order "${order.id}" already exists`;
+      const error = { message: `The order "${order.id}" already exists` };
       return error;
     }
   }
@@ -39,7 +39,7 @@ const getOrder = async (id) => {
 const updateOrder = async (id, body) => {
   let updatedOrder = await Order.findByPk(id);
   if (!updatedOrder) {
-    const error = `The order ID: "${id}" does not exists`;
+    const error = { message: `The order ID: "${id}" does not exists` };
     return error;
   }
   updatedOrder = await Order.update({ ...body }, { where: { id } });

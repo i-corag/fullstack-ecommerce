@@ -19,7 +19,7 @@ const getCategories = async (req, res) => {
     const categories = await categoryService.getCategories();
     return res.status(201).json(categories);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -29,11 +29,13 @@ const getCategory = async (req, res) => {
   try {
     const category = await categoryService.getCategory(id);
     if (!category) {
-      return res.status(409).send(`The category ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The category ID: "${id}" does not exist` });
     }
     return res.status(201).send(category);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -44,11 +46,13 @@ const updateCategory = async (req, res) => {
   try {
     const updatedCategory = await categoryService.updateCategory(id, body);
     if (!updatedCategory) {
-      return res.status(409).send(`The category ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The category ID: "${id}" does not exist` });
     }
     return res.status(201).send(updatedCategory);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -58,13 +62,17 @@ const deleteCategory = async (req, res) => {
   try {
     const deletedCategory = await categoryService.deleteCategory(id);
     if (!deletedCategory) {
-      return res.status(409).send(`The category ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The category ID: "${id}" does not exist` });
     }
     return res
       .status(201)
-      .send(`The category: "${deletedCategory.name}" was successfully deleted`);
+      .send({
+        message: `The category: "${deletedCategory.name}" was successfully deleted`,
+      });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

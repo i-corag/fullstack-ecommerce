@@ -8,21 +8,23 @@ const createProduct = async (product) => {
     where: { name: product.name },
   });
   if (newProduct.length > 0) {
-    const error = `The product "${product.name}" already exists`;
+    const error = { message: `The product "${product.name}" already exists` };
     return error;
   }
   const category = await Category.findAll({
     where: { id: product.CategoryId },
   });
   if (category.length === 0) {
-    const error = `The category "${product.CategoryId}" does not exists`;
+    const error = {
+      message: `The category "${product.CategoryId}" does not exists`,
+    };
     return error;
   }
   const brand = await Brand.findAll({
     where: { id: product.BrandId },
   });
   if (brand.length === 0) {
-    const error = `The brand "${product.BrandId}" does not exists`;
+    const error = { message: `The brand "${product.BrandId}" does not exists` };
     return error;
   }
   const id = crypto.randomBytes(10).toString('hex');
@@ -62,12 +64,12 @@ const updateProduct = async (id, body) => {
         where: { name: body.name },
       });
       if (thisProduct.length > 0) {
-        const error = `The product "${body.name}" already exists`;
+        const error = { message: `The product "${body.name}" already exists` };
         return error;
       }
     }
     updatedProduct = await Product.update({ ...body }, { where: { id } });
-    return `Product successfully updated`;
+    return { message: `Product successfully updated` };
   }
   return updatedProduct;
 };

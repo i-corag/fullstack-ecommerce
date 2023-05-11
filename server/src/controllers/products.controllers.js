@@ -42,7 +42,7 @@ const getProducts = async (req, res) => {
     const products = await productService.getProducts();
     return res.status(201).send(applyFilters(products, req.query));
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -52,11 +52,13 @@ const getProduct = async (req, res) => {
   try {
     const product = await productService.getProduct(id);
     if (!product) {
-      return res.status(409).send(`The product ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The product ID: "${id}" does not exist` });
     }
     return res.status(201).send(product);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -67,11 +69,13 @@ const updateProduct = async (req, res) => {
   try {
     const updatedProduct = await productService.updateProduct(id, body);
     if (!updatedProduct) {
-      return res.status(409).send(`The product ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The product ID: "${id}" does not exist` });
     }
     return res.status(201).send(updatedProduct);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -81,13 +85,17 @@ const deleteProduct = async (req, res) => {
   try {
     const deletedProduct = await productService.deleteProduct(id);
     if (!deletedProduct) {
-      return res.status(409).send(`The product ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The product ID: "${id}" does not exist` });
     }
     return res
       .status(201)
-      .send(`The product: "${deletedProduct.name}" was successfully deleted`);
+      .send({
+        message: `The product: "${deletedProduct.name}" was successfully deleted`,
+      });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

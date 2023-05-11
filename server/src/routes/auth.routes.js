@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { verifyJWT } from '../middlewares/verifyJWT.js';
 import {
   userLogIn,
   isLoggedIn,

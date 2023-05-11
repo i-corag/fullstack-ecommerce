@@ -19,7 +19,7 @@ const getStocks = async (req, res) => {
     const stocks = await stockService.getStocks();
     return res.status(201).send(stocks);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -29,11 +29,13 @@ const getStock = async (req, res) => {
   try {
     const stock = await stockService.getStock(id);
     if (!stock) {
-      return res.status(409).send(`The stock ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The stock ID: "${id}" does not exist` });
     }
     return res.status(201).send(stock);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -44,11 +46,13 @@ const updateStock = async (req, res) => {
   try {
     const updatedStock = await stockService.updateStock(id, body);
     if (!updatedStock) {
-      return res.status(409).send(`The stock ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The stock ID: "${id}" does not exist` });
     }
     return res.status(201).send(updatedStock);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -58,13 +62,17 @@ const deleteStock = async (req, res) => {
   try {
     const deletedStock = await stockService.deleteStock(id);
     if (!deletedStock) {
-      return res.status(409).send(`The stock ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The stock ID: "${id}" does not exist` });
     }
     return res
       .status(201)
-      .send(`The stock: "${deletedStock.id}" was successfully deleted`);
+      .send({
+        message: `The stock: "${deletedStock.id}" was successfully deleted`,
+      });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

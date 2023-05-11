@@ -17,7 +17,7 @@ const getUsers = async (req, res) => {
     const users = await userService.getUsers();
     res.status(201).send(users); //.json(users)
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -27,11 +27,13 @@ const getUser = async (req, res) => {
   try {
     const user = await userService.getUser(email);
     if (!user) {
-      return res.status(409).send(`The user "${email}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The user "${email}" does not exist` });
     }
     return res.status(201).send(user);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -45,7 +47,7 @@ const getUserById = async (req, res) => {
     }
     return res.status(201).send(user);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -56,11 +58,13 @@ const updateUser = async (req, res) => {
   try {
     const updatedUser = await userService.updateUser(id, body);
     if (!updatedUser) {
-      return res.status(409).send(`The user ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The user ID: "${id}" does not exist` });
     }
     return res.status(201).send(updatedUser);
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 
@@ -70,11 +74,15 @@ const deleteUser = async (req, res) => {
   try {
     const deletedUser = await userService.deleteUser(id);
     if (!deletedUser) {
-      return res.status(409).send(`The user ID: "${id}" does not exist`);
+      return res
+        .status(409)
+        .send({ message: `The user ID: "${id}" does not exist` });
     }
-    res.status(201).send(`The user ID: ${id} was successfully deleted`);
+    res
+      .status(201)
+      .send({ message: `The user ID: ${id} was successfully deleted` });
   } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+    return res.status(500).send({ message: `Server error: ${err.message}` });
   }
 };
 

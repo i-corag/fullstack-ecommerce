@@ -56,7 +56,7 @@ const updateUser = async (id, body) => {
     }
     updatedUser = await User.update({ ...body }, { where: { id } });
 
-    return `User successfully updated`;
+    return { message: `User successfully updated` };
   }
   return updatedUser;
 };

@@ -42,11 +42,11 @@ const updateBrand = async (id, body) => {
       where: { name: body.name },
     });
     if (brandName.length > 0) {
-      const error = `The brand "${body.name}" already exists`;
+      const error = { message: `The brand "${body.name}" already exists` };
       return error;
     }
     updatedBrand = await Brand.update({ name: body.name }, { where: { id } });
-    return `Brand successfully updated`;
+    return { message: `Brand successfully updated` };
   }
   return updatedBrand;
 };
