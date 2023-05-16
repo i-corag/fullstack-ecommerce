@@ -1,14 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { logOut } from '../../api/auth';
 import { useGetLoggedUser } from '../../hooks/useUser';
 
 const AuthMenu = ({ handleClose }) => {
 
+    const navigate = useNavigate();
     const { data: loggedUser = [], isError, error } = useGetLoggedUser();
 
     const singOut = async () => {
         await logOut()
-        handleClose();
+        handleClose()
+        navigate('/');
     }
 
     { isError && <ErrorMsg error={error.message} /> }

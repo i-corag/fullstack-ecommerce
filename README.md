@@ -1,6 +1,6 @@
 # Full Stack Ecommerce Web App
 
-[KOFFIE]() - Visit the website! ☕️ 🤎
+[KOFFIE](https://ecommerce-fontend.vercel.app/) - Visit the website! ☕️ 🤎
 
 The frontend is a **React App** bootstrapped with **Vite**.
 The backend was built with **Node.js** and **Express.js**
@@ -21,10 +21,11 @@ The database is **MySQL.**
 
 ### 🚀 In order to run this project you need to:
 
-1- Create a schema is MySQL
-2- git clone https://github.com/i-corag/fullstack-ecommerce.git
-3- add some env on the server: SESSION_SECRET, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_PORT
-4- Start both the client and the API:
+1. Create a schema is MySQL
+2. Use the file to import the data to mysql schema: ![](koffie.sql)
+3. git clone https://github.com/i-corag/fullstack-ecommerce.git
+4. add some env on the server: SESSION_SECRET, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_PORT
+5. Start both the client and the API:
 
 ```sh
 cd server
