@@ -1,6 +1,6 @@
 # Full Stack Ecommerce Web App
 
-[KOFFIE](https://ecommerce-fontend.vercel.app/) - Visit the website! ☕️ 🤎
+<span style="color:brown">KOFFIE</span> ☕️ 🤎 - [Visit the website!](https://ecommerce-fontend.vercel.app/)
 
 The frontend is a **React App** bootstrapped with **Vite**.
 The backend was built with **Node.js** and **Express.js**
